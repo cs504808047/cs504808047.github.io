@@ -1,0 +1,28 @@
+---
+layout: page
+title: "all"
+nav: false
+description: "Time flies like an arrow, fruit flies like a banana"
+header-img: "img/post-bg-coffee.jpeg"
+head_padding: "55px"
+---
+<!--BY Fe 按日期归档-->
+
+{% for post in site.posts %}
+	{% capture ym %}{{ post.date | date:"%Y%m" }}{% endcapture %}
+	{% if yearmonth != ym %}
+		{% assign yearmonth = ym %}
+    <hr>
+        <a href="#{{ post.date | date: "%Y%m" }}">
+          <span class="fa fa-tag listing-seperator">
+              <span class="tag-text">{{ post.date | date: "%Y年%m月" }}</span>
+          </span>
+        </a>
+	{% endif %}
+		   <div>
+		    <a href="{{ post.url }}" title="{{ post.title }}" >
+			     <time datetime="{{ post.date | date_to_string }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+		       &nbsp;&nbsp;{{ post.title }}
+		    </a>
+    </div>
+{% endfor %}
